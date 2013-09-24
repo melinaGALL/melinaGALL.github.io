@@ -59,22 +59,22 @@ PoisMixClusWrapper <- function(y, u, gmin = 1, gmax, conds, lib.size = TRUE, lib
         entropyS.all <- unlist(lapply(all.results, function(x) x$entropyS))
         BIC.all <- unlist(lapply(all.results, function(x) x$BIC))
 	BIC.choose <- which(BIC.all == max(BIC.all, na.rm = TRUE))
-	select.results <- all.results[[BIC.choose]]
+	BIC.select.results <- all.results[[BIC.choose]]
         ICL.all <- unlist(lapply(all.results, function(x) x$ICL))
 	ICL.choose <- which(ICL.all == max(ICL.all, na.rm = TRUE))
-	select.results <- all.results[[ICL.choose]]
+	ICL.select.results <- all.results[[ICL.choose]]
         SICL.all <- unlist(lapply(all.results, function(x) x$SICL))
 	SICL.choose <- which(SICL.all == max(SICL.all, na.rm = TRUE))
-	select.results <- all.results[[SICL.choose]]
+	SICL.select.results <- all.results[[SICL.choose]]
 	MIL.all <- unlist(lapply(all.results, function(x) x$MIL))
 	MIL.choose <- which(MIL.all == max(MIL.all, na.rm = TRUE))
-	select.results <- all.results[[MIL.choose]]
+	MIL.select.results <- all.results[[MIL.choose]]
 	RESULTS <- list(logLike.all = logLike.all,
                         p.logLike.all = p.logLike.all,
                         entropy.all = entropy.all, entropyM.all = entropyM.all,
                         entropyS.all = entropyS.all, BIC.all = BIC.all,
                  ICL.all = ICL.all, SICL.all = SICL.all, MIL.all = MIL.all,
-		select.results = select.results, all.results = all.results)
+		BIC.select.results = BIC.select.results,  ICL.select.results = ICL.select.results, SICL.select.results = SICL.select.results, MIL.select.results = MIL.select.results, all.results = all.results)
 	class(RESULTS) <- "HTSClusterWrapper"
 	return(RESULTS)
 }

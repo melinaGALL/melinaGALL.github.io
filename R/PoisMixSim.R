@@ -3,15 +3,15 @@ function(n = 2000, libsize, separation) {
 
 if(length(libsize) > 1)
 	stop(paste(sQuote("libsize"), "must be equal to one of the following:", dQuote("A"), "or",
-		dQuote("B"), "or", dQuote("equal")))
+		dQuote("B"), "or", dQuote("equal"))) 
 if(libsize != "A" & libsize != "B" & libsize != "equal")
 	stop(paste(sQuote("libsize"), "must be equal to one of the following:", dQuote("A"), "or",
-		dQuote("B"), "or", dQuote("equal")))
+		dQuote("B"), "or", dQuote("equal"))) 
 if(length(separation) > 1)
-	stop(paste(sQuote("separation"), "must be equal to one of the following:",
+	stop(paste(sQuote("separation"), "must be equal to one of the following:", 
 		dQuote("high"), "or", dQuote("low")))
 if(separation != "high" & separation != "low")
-	stop(paste(sQuote("separation"), "must be equal to one of the following:",
+	stop(paste(sQuote("separation"), "must be equal to one of the following:", 
 		dQuote("high"), "or", dQuote("low")))
 if(length(n) > 1)
 	stop(paste(sQuote("n"), "must be a positive integer"))
@@ -39,12 +39,12 @@ d <- length(unique(conds))
 g.true <- 4
 w <- round(rexp(n, 1/mean.expr))
 
-s.true <- ifelse(rep(libsize, cols) == "equal", rep(1/cols, cols),
+s.true <- ifelse(rep(libsize, cols) == "equal", rep(1/cols, cols), 
 s.norm)
 s.dot.true <- rep(NA, d)
 for(j in 1:d) {
 s.dot.true[j] <- sum(s.true[which(conds == (unique(conds))[j])])
-}
+} 
 lambda.true <- matrix(NA, nrow = d, ncol = g.true)
 
 ##################################
@@ -57,7 +57,7 @@ tmp <- cbind(c(1,3,5), c(5,1,3), c(3,5,1), c(5,3,1))
 }
 ## Low separation
 if(separation == "low") {
-tmp <- cbind(c(1,3,5), c(2,4,4), c(1,3,6), c(2,5,3))
+tmp <- cbind(c(1,3,5), c(2,4,4), c(1,5,4), c(2,5,3))
 }
 if(libsize == "B") tmp <- tmp[1:d,];
 ## Choosing lambda values so that colSums(s.dot.true * lambda.true) = 1
